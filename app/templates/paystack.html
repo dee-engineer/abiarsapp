@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    {% extends 'base.html' %}
+    {% block content %}
+    <div class="py-5">
+        <form class="text-center p-4 mx-auto w-75 bg-light rounded" action="{% url 'initiate_payment' %}" method="POST">
+            {% csrf_token %}
+            <input class="form-control my-2" type="number" name="amount" placeholder="Amount">
+            <button class="btn btn-success my-2" type="submit">Pay with Paystack</button>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

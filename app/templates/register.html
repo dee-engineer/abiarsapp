@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="enl" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+  <title>Vehicle User Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body class="bg-warning">
+
+  <div class="container h-100 my-5">
+    <div class="w-75 mx-auto my-5">            
+        <div class="p-4 bg-light rounded mb-5 shadow">    
+        <form action="{% url 'signup' %}" method="post">
+              {% csrf_token %}
+              <div class="mb-4 text-center">
+                <img class="img-fluid" src="{% static 'logo.jpeg' %}" alt="logo" width="100" height="50">
+              </div>
+                <h1 class="fw-bold text-center">Register</h1>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group mt-4">
+                      <label for="firstname">First Name</label>
+                      <input type="text" name="firstname" class="form-control" style="height:50px" id="firstname" placeholder="Enter First Name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mt-4">
+                      <label for="lastname">Last Name</label>
+                      <input type="text" name="lastname" class="form-control" style="height:50px" id="lastname" placeholder="Enter Last Name" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mt-4">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" class="form-control" style="height:50px" id="email" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group mt-4">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" class="form-control" style="height:50px" id="password" placeholder="Enter Password" required>
+                </div>
+                <div class="form-group mt-4">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" name="phone" class="form-control" style="height:50px" id="phone" placeholder="Enter Phone Number" required>
+                </div>
+                <div class="form-group mt-4">
+                    <label for="image">Profile Image</label>
+                    <input type="file" name="image" class="form-control" style="height:50px" id="image" placeholder="Enter Profile Image" required>
+                </div>             
+                <div class="form-group mt-4">
+                  <label for="gender">Gender</label>
+                  <select name="gender" class="form-control" id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group mt-4">
+                  <label for="categories">Categories</label>
+                  <select name="category" class="form-control" id="categories" required>
+                    <option value="">Select Category</option>
+                    {% for category in categories %}
+                    <option value="{{category.name}}">{{ category.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-secondary mt-4 text-center fw-bold" style="width:100%">Register</button>
+                {{error}}
+              </form>
+            </div>
+        </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

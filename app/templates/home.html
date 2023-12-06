@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    
+    {% extends 'base.html' %}
+    {% block content %}
+    <div class="p-5">
+        <div class="d-flex justify-content-between px-4 my-5">
+            <h1>Welcome <span class="text-secondary">{{ user.get_full_name }}</span></h1>
+            <h1>Your Tax ID: <span class="text-secondary">{{user.tax_id}}</span></h1>
+        </div>
+        <div class="row justify-content-between px-4 my-5">
+         <div class="col-lg-5 bg-light rounded shadow p-4">
+            <h1 class="text-center text-dark">Make Payment</h1>
+            <hr>
+            <div>
+                <a class="btn btn-primary fw-bold" href="{% url 'paystack' %}">Pay</a>
+            </div>
+         </div>
+            <div class="rounded col-lg-5 my-3 bg-light shadow justify-content-between p-4">
+            {% if user.is_paid %}
+            <h1 class="text-success">Tax Payment Recieved</h1>
+         {% else %}
+            <h1 class="text-danger">You have not paid your tax</h1>
+         {% endif %}
+        </div>
+        </div>
+        
+        <div class="p-5">
+            <h1 class="text-center">Tax History</h1>
+            <hr>
+            <table></table>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
